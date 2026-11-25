@@ -29,10 +29,10 @@ Does not live here:
 
 ```bash
 pnpm install
-pnpm pack
+node scripts/pack-core.mjs
 ```
 
-`pnpm pack` produces:
+`pack-core.mjs` produces:
 
 ```text
 core-dist/paobu-core-0.3.0.tgz
@@ -40,14 +40,14 @@ core-dist/paobu-core-0.3.0.tgz.sha256
 core-dist/core.lock.json
 ```
 
-Each site reads the version and SHA-256 from `core-dist/core.lock.json` and pins the same artifact.
+`pnpm pack` does not run this repository's script and does not create `core-dist`; use `node scripts/pack-core.mjs`. Each site reads the version and SHA-256 from `core-dist/core.lock.json` and pins the same artifact.
 
 ## Release
 
 1. Change the version in `package.json`.
-2. Run `pnpm pack`.
-3. Tag `core-v0.3.0` and publish a GitHub Release with the tgz, sha256 and `core.lock.json`.
-4. Update `core.lock.json` in all three sites, reinstall and rebuild.
+2. Run `node scripts/pack-core.mjs`.
+3. Tag `core-v0.3.0` and publish a GitHub Release with the tgz, sha256 and `core.lock.json`. The workflow lives in `.github/workflows/release.yml`.
+4. In each site, run `node scripts/sync-core.mjs` to update its `core.lock.json`, then reinstall and rebuild.
 5. Check that the release bundle records the same `version` and `sha256` for all three sites.
 
 A GitHub Release is not required locally: the sites copy the artifact from `../paobu-core/core-dist` through `scripts/sync-core.mjs`.

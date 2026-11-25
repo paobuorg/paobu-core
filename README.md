@@ -29,10 +29,10 @@
 
 ```bash
 pnpm install
-pnpm pack
+node scripts/pack-core.mjs
 ```
 
-`pnpm pack` 生成：
+`pack-core.mjs` 打包并写出：
 
 ```text
 core-dist/paobu-core-0.3.0.tgz
@@ -40,14 +40,14 @@ core-dist/paobu-core-0.3.0.tgz.sha256
 core-dist/core.lock.json
 ```
 
-三个站点从 `core-dist/core.lock.json` 读取版本与 SHA-256，锁定同一个制品。
+`pnpm pack` 不会执行本仓脚本，也不会生成 `core-dist`；必须用 `node scripts/pack-core.mjs`。三个站点从 `core-dist/core.lock.json` 读取版本与 SHA-256，锁定同一个制品。
 
 ## 发版
 
 1. 修改 `package.json` 的版本号。
-2. 运行 `pnpm pack`。
-3. 打 tag `core-v0.3.0`，发布同名 GitHub Release，上传 tgz、sha256 与 `core.lock.json`。
-4. 三个站点更新各自的 `core.lock.json`，重新安装并构建。
+2. 运行 `node scripts/pack-core.mjs`。
+3. 打 tag `core-v0.3.0`，发布同名 GitHub Release，上传 tgz、sha256 与 `core.lock.json`。工作流定义在 `.github/workflows/release.yml`。
+4. 三个站点运行 `node scripts/sync-core.mjs` 更新各自 `core.lock.json`，重新安装并构建。
 5. 在发布包中检查三站使用同一 `version` 与 `sha256`。
 
 本地阶段不需要 GitHub Release：三个站点通过 `scripts/sync-core.mjs` 从 `../paobu-core/core-dist` 复制制品。
