@@ -841,9 +841,9 @@
 }
 
 .globe-panel .filter-chip {
-  flex: 1;
-  min-width: 0;
-  padding: 0 12px;
+  flex: 0 0 auto;
+  padding: 0 14px;
+  white-space: nowrap;
 }
 
 .globe-panel .route-list {

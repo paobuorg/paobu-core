@@ -8,7 +8,7 @@ interface Props {
 const { href, compact = false } = Astro.props;
 ---
 <a class="brand" href={href} aria-label="跑起来 RUNUP">
-  <Bean expression="run" size={48} className="brand-mark" />
+  <Bean expression="run" size={48} className="brand-mark" backdrop={false} />
   {!compact && (
     <span class="brand-text">
       <span class="brand-cn">跑起来</span>

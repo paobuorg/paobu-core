@@ -182,20 +182,12 @@ const serviceWorkerScript = String.raw`
     <script is:inline set:html={themeToggleScript(locale)} />
     <script is:inline set:html={localeSwitchScript(other)} />
     <script is:inline set:html={viewportAssistScript} />
-    {adsenseClient && !preview && footerAd && !isHome && (
-      <script
-        is:inline
-        async
-        fetchpriority="low"
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-        crossorigin="anonymous"
-      ></script>
-    )}
-    {adsenseClient && !preview && footerAd && isHome && (
-      <script is:inline data-adsense-client={adsenseClient}>
+    {adsenseClient && !preview && footerAd && (
+      <script is:inline data-adsense-client={adsenseClient} data-adsense-delay={isHome ? '8000' : '1500'}>
         (() => {
           const client = document.currentScript?.dataset.adsenseClient;
           if (!client) return;
+          const delay = Number(document.currentScript?.dataset.adsenseDelay || 1500);
           const load = () => {
             if (document.querySelector('script[data-adsense-loader]')) return;
             const script = document.createElement('script');
@@ -205,7 +197,9 @@ const serviceWorkerScript = String.raw`
             script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`;
             document.head.appendChild(script);
           };
-          window.addEventListener('load', () => window.setTimeout(load, 8000), { once: true });
+          const schedule = () => window.setTimeout(load, delay);
+          if (document.readyState === 'complete') schedule();
+          else window.addEventListener('load', schedule, { once: true });
         })();
       </script>
     )}
