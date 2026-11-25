@@ -35,8 +35,8 @@ node scripts/pack-core.mjs
 `pack-core.mjs` 打包并写出：
 
 ```text
-core-dist/paobu-core-0.3.1.tgz
-core-dist/paobu-core-0.3.1.tgz.sha256
+core-dist/paobu-core-0.3.2.tgz
+core-dist/paobu-core-0.3.2.tgz.sha256
 core-dist/core.lock.json
 ```
 
@@ -46,7 +46,7 @@ core-dist/core.lock.json
 
 1. 修改 `package.json` 的版本号。
 2. 运行 `node scripts/pack-core.mjs`。
-3. 打 tag `core-v0.3.1`，发布同名 GitHub Release，上传 tgz、sha256 与 `core.lock.json`。工作流定义在 `.github/workflows/release.yml`。
+3. 打 tag `core-v0.3.2`，发布同名 GitHub Release，上传 tgz、sha256 与 `core.lock.json`。工作流定义在 `.github/workflows/release.yml`。
 4. 三个站点运行 `node scripts/sync-core.mjs` 更新各自 `core.lock.json`，重新安装并构建。
 5. 在发布包中检查三站使用同一 `version` 与 `sha256`。
 
@@ -62,3 +62,4 @@ core-dist/core.lock.json
 ## 许可
 
 MIT。见 [LICENSE](LICENSE)。
+
