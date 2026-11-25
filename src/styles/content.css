@@ -690,12 +690,17 @@
     text-decoration: none;
   }
 
+}
+
+/* Tablet landscape keeps a single reading column: a 320px side panel would
+   force four-line headings at 1024px, so the route stack goes full width. */
+@media (max-width: 1100px) {
   .route-detail-layout {
     grid-template-columns: 1fr;
   }
 
   .route-map-card {
-    min-height: 380px;
+    min-height: 400px;
   }
 
   .route-footer-grid {

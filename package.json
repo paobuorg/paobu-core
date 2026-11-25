@@ -1,6 +1,6 @@
 {
   "name": "@paobu/core",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Shared design, locale, routing, content contracts and release helpers for RunUp sites.",
   "type": "module",
   "license": "MIT",

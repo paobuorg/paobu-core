@@ -35,8 +35,8 @@ node scripts/pack-core.mjs
 `pack-core.mjs` produces:
 
 ```text
-core-dist/paobu-core-0.3.2.tgz
-core-dist/paobu-core-0.3.2.tgz.sha256
+core-dist/paobu-core-0.3.3.tgz
+core-dist/paobu-core-0.3.3.tgz.sha256
 core-dist/core.lock.json
 ```
 
@@ -46,7 +46,7 @@ A plain `pnpm pack` only produces the npm tarball; it does not write `core-dist`
 
 1. Change the version in `package.json`.
 2. Run `node scripts/pack-core.mjs`.
-3. Tag `core-v0.3.2` and publish a GitHub Release with the tgz, sha256 and `core.lock.json`. The workflow lives in `.github/workflows/release.yml`.
+3. Tag `core-v0.3.3` and publish a GitHub Release with the tgz, sha256 and `core.lock.json`. The workflow lives in `.github/workflows/release.yml`.
 4. In each site, run `node scripts/sync-core.mjs` to update its `core.lock.json`, then reinstall and rebuild.
 5. Check that the release bundle records the same `version` and `sha256` for all three sites.
 
