@@ -40,7 +40,7 @@ core-dist/paobu-core-0.3.0.tgz.sha256
 core-dist/core.lock.json
 ```
 
-`pnpm pack` does not run this repository's script and does not create `core-dist`; use `node scripts/pack-core.mjs`. Each site reads the version and SHA-256 from `core-dist/core.lock.json` and pins the same artifact.
+A plain `pnpm pack` only produces the npm tarball; it does not write `core-dist`'s `.sha256` and `core.lock.json`. Generate the publishable artifact with `node scripts/pack-core.mjs`. Each site reads the version and SHA-256 from `core-dist/core.lock.json` and pins the same artifact.
 
 ## Release
 

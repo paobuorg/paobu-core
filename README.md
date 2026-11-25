@@ -40,7 +40,7 @@ core-dist/paobu-core-0.3.0.tgz.sha256
 core-dist/core.lock.json
 ```
 
-`pnpm pack` 不会执行本仓脚本，也不会生成 `core-dist`；必须用 `node scripts/pack-core.mjs`。三个站点从 `core-dist/core.lock.json` 读取版本与 SHA-256，锁定同一个制品。
+直接 `pnpm pack` 只会按 npm 包规则产出 tgz，不会补齐 `core-dist` 的 `.sha256` 与 `core.lock.json`；生成可发布制品必须用 `node scripts/pack-core.mjs`。三个站点从 `core-dist/core.lock.json` 读取版本与 SHA-256，锁定同一个制品。
 
 ## 发版
 
