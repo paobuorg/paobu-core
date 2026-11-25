@@ -131,7 +131,7 @@ function dedupeById<T>(
 }
 
 function translationFromMarkdown(file: string, entityId: string, locale: Locale): Translation {
-  const raw = fs.readFileSync(file, 'utf8');
+  const raw = fs.readFileSync(file, 'utf8').replace(/\r\n?/g, '\n');
   const parsed = matter(raw, {
     engines: { yaml: (source: string) => YAML.parse(source) as object },
   });
