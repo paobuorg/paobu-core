@@ -378,13 +378,13 @@ export function defaultContentRoots(): ContentRoots {
   return {
     routes: process.env.ROUTES_CONTENT_DIR
       ? path.resolve(process.env.ROUTES_CONTENT_DIR)
-      : path.join(reposRoot, 'running-routes'),
+      : path.join(reposRoot, 'marathon-trail-running-races'),
     knowledge: process.env.KNOWLEDGE_CONTENT_DIR
       ? path.resolve(process.env.KNOWLEDGE_CONTENT_DIR)
-      : path.join(reposRoot, 'running-knowledge'),
+      : path.join(reposRoot, 'running-handbook', 'knowledge'),
     tools: process.env.TOOLS_CONTENT_DIR
       ? path.resolve(process.env.TOOLS_CONTENT_DIR)
-      : path.join(reposRoot, 'running-tools'),
+      : path.join(reposRoot, 'running-handbook', 'tools'),
   };
 }
 
